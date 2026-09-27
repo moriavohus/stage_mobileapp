@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title><%= page_title(content_for(:title)) %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Stage — мобильный компаньон для женщин 30–40: одно действие в день, чтобы подойти к перименопаузе сильной.">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <%= stylesheet_link_tag "00_quarks", "10_atoms", "20_molecules", "30_organisms", "35_widgets", "40_templates", "60_design", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="text-body-l">
+    <%= organism "nav_desktop", active: (controller_name == "posts" && action_name == "show" ? "focus" : nav_section), items: nav_items, back_href: feed_path, brand_href: root_path %>
+    <main class="page <%= content_for(:page_class) %>">
+      <% flash.each do |_type, message| %><p class="flash" role="status"><%= message %></p><% end %>
+      <%= yield %>
+      <%= organism "footer" %>
+    </main>
+    <%= organism "tab_bar", active: nav_section, items: nav_items %>
+  </body>
+</html>

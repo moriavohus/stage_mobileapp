@@ -1,0 +1,14 @@
+<section class="widget w-suggest">
+  <h3 class="w-suggest__title text-title-section">Как ты<br>сегодня?</h3>
+  <div class="w-suggest__moods">
+    <% [["peach", "heart"], ["lime", "today"], [:center], ["mind", "domain-sleep"], ["lilac", "heart"]].each do |tone, ic| %>
+      <% if tone == :center %>
+        <span class="w-suggest__mood w-suggest__mood--center"><%= atom "pearl", size: "m" %><span class="w-suggest__mood-label text-body-l">Спокойно</span></span>
+      <% else %>
+        <span class="w-suggest__mood"><span class="w-suggest__emotion w-suggest__emotion--<%= tone %>"><%= icon ic, size: 20 %></span></span>
+      <% end %>
+    <% end %>
+  </div>
+  <p class="w-suggest__hint text-body-l">листай, чтобы выбрать другое</p>
+  <%= molecule "search_field", placeholder: "Найти состояние" %>
+</section>

@@ -1,0 +1,26 @@
+.ds { gap: var(--space-40); }
+.ds__level { display: flex; flex-direction: column; gap: var(--space-24); }
+.ds__level > h2 { padding-bottom: var(--space-8); border-bottom: 1px solid var(--color-surface-track); color: var(--color-text-primary); }
+.ds__item { display: flex; flex-direction: column; gap: var(--space-12); }
+.ds__name { display: flex; gap: var(--space-8); align-items: baseline; color: var(--color-text-primary); }
+.ds__name code { color: var(--color-text-body-secondary); font-size: 13px; }
+.ds__row { display: flex; flex-wrap: wrap; gap: var(--space-16); align-items: flex-start; }
+.ds__cell { display: flex; flex-direction: column; gap: var(--space-6); }
+.ds__cell:not(.ds__w361, .ds__w175, .ds__w100, .ds__phone) { align-items: flex-start; }
+.ds__cell > small { color: var(--color-text-body-secondary); font-size: 13px; line-height: 18px; }
+.ds__w361 { width: 361px; max-width: 100%; }
+.ds__w175 { width: 175px; }
+.ds__w100 { width: 100px; }
+.ds__dark { padding: var(--space-24); border-radius: var(--radius-3xl); background: url(photos/wide.jpg) center / cover; }
+.ds__swatch { width: 120px; }
+.ds__swatch i { display: block; height: 48px; border-radius: var(--radius-md); box-shadow: inset 0 0 0 1px var(--color-surface-track); }
+.ds__phone { position: relative; width: 393px; max-width: 100%; }
+.ds__phone .tab-bar { position: static; }
+
+.ds__wide { width: 1440px; max-width: none; overflow: hidden; margin-left: calc((100% - 1440px) / 2); }
+.ds__wide .nav-desktop { display: flex; position: static; }
+.ds__grid { display: flex; justify-content: center; gap: var(--grid-gutter); height: 120px; background: var(--color-surface-card-lavender); }
+.ds__grid i { width: var(--grid-column); background: var(--color-surface-solid); }
+.ds__wide .ds__cell { align-items: stretch; }
+.ds__wide .nav-desktop { width: 100%; }
+.ds__phone .tab-bar { display: flex; }

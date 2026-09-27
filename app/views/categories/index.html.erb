@@ -1,0 +1,12 @@
+<% content_for :title, "Темы" %>
+<%= organism "header_screen", title: "Темы", eyebrow: "Материалы по четырём направлениям", layout: "below" %>
+<%= molecule "filter_bar", items: category_filter_items(@categories) %>
+<div class="grid-tiles">
+  <% @categories.each do |c| %><%= molecule "tile_domain", domain: c.domain, label: domain_label(c.domain), count: @counts.fetch(c.id, 0), delta: nil, href: category_path(c) %><% end %>
+</div>
+<% @categories.each do |c| %>
+  <% posts = c.posts.published.recent.includes(:category, cover_attachment: :blob).limit(3) %>
+  <% next if posts.empty? %>
+  <%= molecule "section_header", title: c.name, action_label: "Все", action_href: category_path(c) %>
+  <%= organism "list_group", type: "articles", rows: posts.map { |p| { title: p.title, subtitle: minutes_label(p.duration_minutes) || p.kind_label, domain: c.domain, href: post_path(p) } } %>
+<% end %>

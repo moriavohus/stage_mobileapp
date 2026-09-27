@@ -1,0 +1,13 @@
+<% items = local_assigns.fetch(:items) { [
+     { kind: :photo, title: "Перименопауза простыми словами", meta: "6 минут" },
+     { kind: :article, title: "Почему мышцы важны уже в 30", meta: "3 минуты", domain: "strength" },
+     { kind: :photo, title: "Как кофеин влияет на сон", meta: "4 минуты" },
+     { kind: :article, title: "Белок после 30: что важно знать", meta: "5 минут", domain: "nutrition" }] } %>
+<% card = ->(it, size) { it[:kind] == :photo ? molecule("card_photo", size:, **it.except(:kind, :domain)) : molecule("card_article", size:, **it.except(:kind, :image)) } %>
+<div class="grid-articles">
+  <% items.each_slice(4) do |a, b, c, d| %>
+    <%= card.(a, "wide") if a %>
+    <% if b || c %><div class="grid-articles__row"><%= card.(b, "square") if b %><%= card.(c, "square") if c %></div><% end %>
+    <%= card.(d, "wide") if d %>
+  <% end %>
+</div>

@@ -1,0 +1,4 @@
+<% days = local_assigns.fetch(:days) { %w[strength sleep mind strength sleep] + [nil, nil] } %>
+<div class="week-layers" role="img" aria-label="Слоёв за неделю: <%= days.compact.size %>">
+  <% days.each do |d| %><%= atom "layer_segment", domain: d || "empty" %><% end %>
+</div>

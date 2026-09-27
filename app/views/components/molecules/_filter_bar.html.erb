@@ -1,0 +1,6 @@
+<% items = local_assigns.fetch(:items) { [{ label: "Все", selected: true }] + %w[strength mind sleep nutrition].zip(%w[Сила Мозг Сон Питание]).map { |d, l| { label: l, domain: d } } } %>
+<nav class="filter-bar" aria-label="Фильтр по темам">
+  <% items.each do |it| %>
+    <%= atom "chip", label: it[:label], domain: it[:domain] || "strength", show_icon: it[:domain].present?, selected: it[:selected], href: it[:href] %>
+  <% end %>
+</nav>

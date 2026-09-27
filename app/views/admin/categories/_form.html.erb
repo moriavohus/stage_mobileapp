@@ -1,0 +1,12 @@
+<%= form_with model: [:admin, category], class: "form surface-lavender" do |f| %>
+  <%= render "admin/errors", record: category %>
+  <div><%= f.label :name %><%= f.text_field :name, required: true %></div>
+  <div><%= f.label :slug %><%= f.text_field :slug, placeholder: "заполнится из названия" %></div>
+  <div><%= f.label :description %><%= f.text_area :description, rows: 3 %></div>
+  <div class="grid-2">
+    <div><%= f.label :domain, "Домен (иконка)" %><%= f.select :domain, Category::DOMAINS %></div>
+    <div><%= f.label :tone %><%= f.select :tone, Category::TONES %></div>
+  </div>
+  <div><%= f.label :position %><%= f.number_field :position %></div>
+  <%= atom "button", label: "Сохранить", style: "primary" %>
+<% end %>

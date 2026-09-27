@@ -1,0 +1,17 @@
+<% month = local_assigns.fetch(:month) { "Сентябрь" }; day = local_assigns.fetch(:day) { "25" }
+   days = local_assigns.fetch(:days) { [["layers2", 21], ["layers1", 22], ["layers2", 23], ["layers3", 24], ["today", 25], ["future", 26], ["future", 27]] } %>
+<section class="widget w-calendar surface-lavender">
+  <div class="w-calendar__controls">
+    <%= atom "segmented" %>
+    <button type="button" class="w-calendar__settings" aria-label="Настройки"><%= icon "adjust" %></button>
+  </div>
+  <div class="w-calendar__month text-display-l"><span><%= month %></span><span><%= day %></span></div>
+  <div class="w-calendar__week">
+    <div class="w-calendar__weekdays text-body-l"><% %w[П В С Ч П С В].each do |d| %><span><%= d %></span><% end %></div>
+    <div class="w-calendar__days"><% days.each do |state, n| %><%= atom "calendar_day", state:, number: n, width: 40, muted: true, soft: true %><% end %></div>
+  </div>
+  <div class="w-calendar__actions">
+    <span class="w-calendar__reminder text-body-l"><%= icon "pencil" %>Напоминание</span>
+    <span class="w-calendar__new text-body-l"><%= icon "plus" %>Новый слой</span>
+  </div>
+</section>

@@ -1,0 +1,244 @@
+{
+ "color": {
+  "text/primary": "#1a1633",
+  "text/secondary": "rgba(26, 22, 51, 0.68)",
+  "text/link": "#4a44b8",
+  "text/on-inverse": "#f4f2f8",
+  "text/on-accent": "#1a1633",
+  "icon/primary": "#1a1633",
+  "icon/secondary": "rgba(26, 22, 51, 0.68)",
+  "icon/on-inverse": "#ffffff",
+  "bg/page": "#ffffff",
+  "bg/aura-lilac": "#ddd8ee",
+  "bg/aura-peach": "#f4e0da",
+  "surface/glass": "rgba(255, 255, 255, 0.5)",
+  "surface/solid": "#ffffff",
+  "surface/inverse": "#1a1633",
+  "surface/track": "rgba(26, 22, 51, 0.08)",
+  "surface/transparent": "rgba(255, 255, 255, 0)",
+  "border/subtle": "rgba(26, 22, 51, 0.22)",
+  "border/empty": "rgba(26, 22, 51, 0.2)",
+  "border/strong": "#1a1633",
+  "accent/primary": "#d8f53a",
+  "indicator/active": "#1a1633",
+  "domain/strength/base": "#ff6b4a",
+  "domain/strength/tint": "#ffe4de",
+  "domain/strength/soft": "rgba(255, 107, 74, 0.24)",
+  "domain/strength/wash": "rgba(255, 107, 74, 0.12)",
+  "domain/mind/base": "#9b7bff",
+  "domain/mind/tint": "#ede7ff",
+  "domain/mind/soft": "rgba(155, 123, 255, 0.24)",
+  "domain/mind/wash": "rgba(155, 123, 255, 0.12)",
+  "domain/sleep/base": "#5b7cff",
+  "domain/sleep/tint": "#e1e7ff",
+  "domain/sleep/soft": "rgba(91, 124, 255, 0.24)",
+  "domain/sleep/wash": "rgba(91, 124, 255, 0.12)",
+  "domain/nutrition/base": "#2fcb86",
+  "domain/nutrition/tint": "#d9f6e9",
+  "domain/nutrition/soft": "rgba(47, 203, 134, 0.24)",
+  "domain/nutrition/wash": "rgba(47, 203, 134, 0.12)",
+  "text/body": "#000000",
+  "text/body-secondary": "#56525f",
+  "text/tertiary": "rgba(60, 60, 67, 0.3)",
+  "icon/accent": "#d2f600",
+  "surface/row-accent": "rgba(210, 246, 0, 0.3)",
+  "effect/glow-accent": "rgba(210, 246, 0, 0.25)",
+  "surface/card-top": "#eeeaf8",
+  "surface/card-bottom": "#d5c9ef",
+  "icon/frosted": "#dfd7f0",
+  "effect/frosted-shade": "#7c5dc0",
+  "surface/chip-selected": "#000000",
+  "surface/glow-base": "rgba(255, 255, 255, 0.01)",
+  "border/card": "rgba(26, 22, 51, 0.1)",
+  "border/row-accent": "#a8c400",
+  "surface/tab-bar": "rgba(255, 255, 255, 0.9)",
+  "icon/accent-lavender": "#553ca3",
+  "effect/glow-lavender": "rgba(110, 86, 184, 0.25)",
+  "accent/progress": "#553ca3",
+  "surface/inset": "rgba(255, 255, 255, 0.7)",
+  "icon/frosted-deep": "#7c5dc0",
+  "text/on-inverse-secondary": "rgba(244, 242, 248, 0.55)",
+  "surface/card-lime": "#f7fcdb",
+  "surface/card-sky": "rgba(91, 124, 255, 0.08)",
+  "surface/card-lavender": "#eeeaf8",
+  "effect/inner-lime": "#dde68a",
+  "effect/inner-sky": "rgba(91, 124, 255, 0.2)",
+  "effect/inner-lavender": "#dcd1fa",
+  "text/phrase-dim": "#6b5aa6"
+ },
+ "space": {
+  "space/0": 0,
+  "space/2": 2,
+  "space/4": 4,
+  "space/6": 6,
+  "space/8": 8,
+  "space/10": 10,
+  "space/12": 12,
+  "space/14": 14,
+  "space/16": 16,
+  "space/18": 18,
+  "space/20": 20,
+  "space/24": 24,
+  "space/32": 32,
+  "space/40": 40,
+  "space/54": 54,
+  "space/64": 64,
+  "space/80": 80,
+  "space/120": 120
+ },
+ "radius": {
+  "radius/xs": 2,
+  "radius/sm": 8,
+  "radius/md": 12,
+  "radius/lg": 14,
+  "radius/xl": 18,
+  "radius/2xl": 24,
+  "radius/3xl": 30,
+  "radius/card": 35,
+  "radius/4xl": 40,
+  "radius/full": 999
+ },
+ "effect": {
+  "inner-lavender": "inset 0 0 4px 0 var(--color-effect-inner-lavender)",
+  "inner-lime": "inset 0 0 4px 0 var(--color-effect-inner-lime)",
+  "inner-sky": "inset 0 0 4px 0 var(--color-effect-inner-sky)",
+  "control-highlight": "inset 0 1px 0 0 rgba(255, 255, 255, 0.7)",
+  "control-empty-slot": "inset 0 0 0 1px rgba(26, 22, 51, 0.2)",
+  "blur-aura": "60px"
+ },
+ "text": [
+  {
+   "name": "Display/XL",
+   "family": "expanded",
+   "wght": 410,
+   "size": 64,
+   "lh": 70,
+   "ls": "-1px"
+  },
+  {
+   "name": "Display/L",
+   "family": "expanded",
+   "wght": 410,
+   "size": 36,
+   "lh": 40,
+   "ls": "-0.4px"
+  },
+  {
+   "name": "Title/Screen",
+   "family": "expanded",
+   "wght": 270,
+   "size": 34,
+   "lh": 38,
+   "ls": "-0.34px"
+  },
+  {
+   "name": "Title/Section",
+   "family": "expanded",
+   "wght": 270,
+   "size": 28,
+   "lh": 32,
+   "ls": "0"
+  },
+  {
+   "name": "Title/Quote",
+   "family": "expanded",
+   "wght": 270,
+   "size": 28,
+   "lh": 34,
+   "ls": "0"
+  },
+  {
+   "name": "Title/Widget",
+   "family": "expanded",
+   "wght": 270,
+   "size": 24,
+   "lh": 27,
+   "ls": "0"
+  },
+  {
+   "name": "Title/Phrase",
+   "family": "expanded",
+   "wght": 270,
+   "size": 20,
+   "lh": 23,
+   "ls": "0"
+  },
+  {
+   "name": "Body/L",
+   "family": "text",
+   "wght": 400,
+   "size": 17,
+   "lh": 22,
+   "ls": "0"
+  },
+  {
+   "name": "Body/L Strong",
+   "family": "text",
+   "wght": 510,
+   "size": 17,
+   "lh": 22,
+   "ls": "-0.4px"
+  },
+  {
+   "name": "Body/M",
+   "family": "text",
+   "wght": 400,
+   "size": 15,
+   "lh": 20,
+   "ls": "-0.23px"
+  },
+  {
+   "name": "Caption/M",
+   "family": "text",
+   "wght": 400,
+   "size": 13,
+   "lh": 18,
+   "ls": "-0.1px"
+  },
+  {
+   "name": "iOS/Body",
+   "family": "text",
+   "wght": 400,
+   "size": 17,
+   "lh": 22,
+   "ls": "-0.43px"
+  },
+  {
+   "name": "iOS/Subheadline",
+   "family": "text",
+   "wght": 400,
+   "size": 15,
+   "lh": 20,
+   "ls": "-0.23px"
+  },
+  {
+   "name": "iOS/Footnote",
+   "family": "text",
+   "wght": 400,
+   "size": 13,
+   "lh": 18,
+   "ls": "-0.08px"
+  },
+  {
+   "name": "iOS/Footnote Emphasized",
+   "family": "text",
+   "wght": 590,
+   "size": 13,
+   "lh": 18,
+   "ls": "-0.08px"
+  }
+ ],
+ "ios": {
+  "fill-tertiary": "rgba(118, 118, 128, 0.12)",
+  "segment-selected": "#ffffff"
+ },
+ "grid": {
+  "desktop": {
+   "container": 992,
+   "columns": 12,
+   "column": 68,
+   "gutter": 16,
+   "breakpoint": 1024
+  }
+ }
+}

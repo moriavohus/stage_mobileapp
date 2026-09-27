@@ -1,0 +1,5 @@
+<article class="card-growth surface-lavender">
+  <h3 class="card-growth__title text-title-section">Как росла жемчужина</h3>
+  <p class="card-growth__text text-body-l">Слои не исчезают. Если пропустить день, жемчужина просто растёт медленнее.</p>
+  <div class="card-growth__steps"><% %w[day month quarter now].each do |s| %><%= molecule "pearl_step", stage: s %><% end %></div>
+</article>

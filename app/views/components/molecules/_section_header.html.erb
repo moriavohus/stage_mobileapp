@@ -1,0 +1,5 @@
+<% title = local_assigns.fetch(:title) { "Программы" }; action_label = local_assigns.fetch(:action_label) { nil }; action_href = local_assigns.fetch(:action_href) { nil }; level = local_assigns.fetch(:level) { 2 } %>
+<div class="section-header">
+  <%= content_tag("h#{level}", title, class: "section-header__title text-title-section") %>
+  <%= atom "button", label: action_label, href: action_href, style: "plain", size: "small" if action_label %>
+</div>

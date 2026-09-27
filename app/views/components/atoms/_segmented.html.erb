@@ -1,0 +1,6 @@
+<% items = local_assigns.fetch(:items) { ["Неделя", "Месяц"] }; selected = local_assigns.fetch(:selected) { 0 } %>
+<div class="segmented" role="group">
+  <% items.each_with_index do |item, i| %>
+    <button type="button" class="segmented__item <%= i == selected ? "text-ios-footnote-emphasized" : "text-ios-footnote" %>" aria-pressed="<%= i == selected %>"><%= item %></button>
+  <% end %>
+</div>

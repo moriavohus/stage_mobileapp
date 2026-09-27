@@ -1,0 +1,18 @@
+<% content_for :title, @post.title %>
+<%= organism "header_screen", title: @post.title, eyebrow: [@post.category.name, @post.kind_label, minutes_label(@post.duration_minutes)].compact.join(" · "), layout: "above" %>
+<div class="grid-2">
+  <div class="stack">
+    <% if (embed = video_embed_url(@post.video_url)) %>
+      <iframe class="video" src="<%= embed %>" title="<%= @post.title %>" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <% elsif @post.cover_source.present? %>
+      <%= molecule "card_photo", image: @post.cover_source, title: @post.category.name, meta: @post.kind_label %>
+    <% end %>
+    <% if @post.video_url.present? && embed.nil? %><%= atom "button", label: "Смотреть видео", href: @post.video_url, style: "plain" %><% end %>
+    <% if @post.summary.present? %><%= molecule "note_why", text: @post.summary %><% end %>
+  </div>
+  <div class="prose text-body-l"><%= simple_format(@post.body) %></div>
+</div>
+<% if @related.any? %>
+  <%= molecule "section_header", title: "Ещё в теме «#{@post.category.name}»", action_label: "Все", action_href: category_path(@post.category) %>
+  <div class="stack"><% @related.each do |p| %><%= molecule "row_exercise", **row_exercise_props(p) %><% end %></div>
+<% end %>

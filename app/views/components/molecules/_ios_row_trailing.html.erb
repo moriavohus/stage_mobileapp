@@ -1,0 +1,5 @@
+<% detail = local_assigns.fetch(:detail) { nil }; chevron = true if local_assigns[:chevron].nil? %>
+<span class="ios-row__trailing">
+  <% if detail %><span class="ios-row__detail text-ios-body"><%= detail %></span><% end %>
+  <% if chevron %><span class="ios-row__chevron"><%= icon "chevron-right" %></span><% end %>
+</span>

@@ -1,0 +1,128 @@
+<% content_for :title, "Дизайн-система" %>
+<% content_for :page_class, "ds" %>
+<% tokens = JSON.parse(Rails.root.join("design/figma-tokens.json").read) %>
+<% item = ->(name, node, &blk) { tag.div(class: "ds__item") { tag.h3(class: "ds__name text-title-widget") { safe_join([name, tag.code(node)], " ") } + capture(&blk) } } %>
+<% cell = ->(label, css = nil, &blk) { tag.div(class: [ "ds__cell", css ]) { capture(&blk) + tag.small(label) } } %>
+
+<%= organism "header_screen", title: "Дизайн-система Stage", eyebrow: "Все компоненты из Figma-файла в коде: 03 Quarks → 04.4 Widgets", layout: "below" %>
+
+<section class="ds__level">
+  <h2 class="text-title-section">03 Quarks</h2>
+  <%= item.("Color", "Collection · Light") do %>
+    <div class="ds__row"><% tokens["color"].each do |k, v| %><%= cell.(k, "ds__swatch") { tag.i(style: "background: var(--color-#{k.tr('/', '-')})") } %><% end %></div>
+  <% end %>
+  <%= item.("Text styles", "11 стилей + iOS") do %>
+    <div class="stack"><% tokens["text"].each do |s| %><p class="text-<%= s["name"].downcase.tr("/ ", "--") %>"><%= s["name"] %> · <%= s["size"] %>/<%= s["lh"] %> · wght <%= s["wght"] %></p><% end %></div>
+  <% end %>
+  <%= item.("Space · Radius · Effects", "Space, Radius, Inner/*") do %>
+    <div class="ds__row">
+      <% tokens["space"].each do |k, v| %><%= cell.(k) { tag.i(style: "display:block;width:#{v}px;height:16px;background:var(--color-accent-progress)") } %><% end %>
+    </div>
+    <div class="ds__row">
+      <% tokens["radius"].each do |k, v| %><%= cell.(k) { tag.i(style: "display:block;width:64px;height:64px;border-radius:#{[v, 32].min}px;background:var(--color-surface-card-lavender);box-shadow:var(--effect-inner-lavender)") } %><% end %>
+      <% %w[lavender lime sky].each do |t| %><%= cell.("Card/#{t.capitalize} + Inner/#{t.capitalize}") { tag.i(class: "surface-#{t}", style: "display:block;width:120px;height:64px;border-radius:var(--radius-md)") } %><% end %>
+    </div>
+  <% end %>
+</section>
+
+<section class="ds__level">
+  <h2 class="text-title-section">04.1 Atoms</h2>
+  <%= item.("Icon/*", "39:2 … 80:190") do %>
+    <div class="ds__row"><% %w[today library community profile chevron-right search adjust plus heart check domain-strength domain-mind domain-sleep domain-nutrition clock arrow-up-right pencil].each do |n| %><%= cell.(n) { icon(n) } %><% end %></div>
+  <% end %>
+  <%= item.("Button", "50:5621") do %>
+    <div class="ds__row"><% %w[primary glass tinted plain].product(%w[large small]).each do |st, sz| %><%= cell.("Style=#{st.capitalize}, Size=#{sz.capitalize}") { atom "button", style: st, size: sz, type: "button" } %><% end %></div>
+  <% end %>
+  <%= item.("Chip/Filter", "50:5487") do %>
+    <div class="ds__row"><%= cell.("State=Default") { atom "chip" } %><%= cell.("State=Selected") { atom "chip", selected: true } %><%= cell.("Show Icon=false") { atom "chip", label: "Все", show_icon: false, selected: true } %></div>
+  <% end %>
+  <%= item.("Avatar/Glow", "50:5566") do %>
+    <div class="ds__row"><% %w[medium small].product(%w[lime lavender], ComponentsHelper::DOMAINS).each do |v, t, d| %><%= cell.("#{v}/#{t}/#{d}") { atom "avatar", variant: v, tone: t, domain: d } %><% end %></div>
+  <% end %>
+  <%= item.("Pearl", "41:80") do %>
+    <div class="ds__row"><% %w[s m l xl].each do |s| %><%= cell.("Size=#{s.upcase}") { atom "pearl", size: s } %><% end %></div>
+  <% end %>
+  <%= item.("Tab Item", "41:93") do %>
+    <div class="ds__row"><%= cell.("State=Active") { atom "tab_item", active: true } %><%= cell.("State=Inactive") { atom "tab_item" } %></div>
+  <% end %>
+  <%= item.("Layer Segment", "40:117") do %>
+    <div class="ds__row"><% (ComponentsHelper::DOMAINS + ["empty"]).each do |d| %><%= cell.("Domain=#{d.capitalize}") { atom "layer_segment", domain: d } %><% end %></div>
+  <% end %>
+  <%= item.("Calendar Day", "67:6282") do %>
+    <div class="ds__row"><% %w[rest layers1 layers2 layers3 today future blank].each do |s| %><%= cell.("State=#{s}") { atom "calendar_day", state: s } %><% end %></div>
+  <% end %>
+  <%= item.("System/Home Indicator", "41:108") do %><div class="ds__phone"><%= atom "home_indicator" %></div><% end %>
+  <%= item.("iOS kit: Toggle · Segmented · Liquid Glass", "Components") do %>
+    <div class="ds__row">
+      <%= cell.("Toggle On") { atom "toggle" } %><%= cell.("Segmented") { tag.div(atom("segmented"), style: "width:261px") } %>
+      <%= cell.("_Liquid Glass Small") { tag.span(tag.span(class: "liquid-glass"), style: "position:relative;display:block;width:36px;height:36px") } %>
+    </div>
+  <% end %>
+</section>
+
+<section class="ds__level">
+  <h2 class="text-title-section">04.2 Molecules</h2>
+  <%= item.("Row/Exercise", "51:5516") do %><div class="ds__row"><%= cell.("Tone=Lime", "ds__w361") { molecule "row_exercise" } %><%= cell.("Tone=Sky (оверрайд)", "ds__w361") { molecule "row_exercise", tone: "sky" } %></div><% end %>
+  <%= item.("Card/Program", "51:5543") do %>
+    <div class="ds__row"><% ComponentsHelper::DOMAINS.each do |d| %><%= cell.("Domain=#{d.capitalize}") { molecule "card_program", domain: d } %><% end %></div>
+  <% end %>
+  <%= item.("Filter Bar", "51:5544") do %><%= molecule "filter_bar" %><% end %>
+  <%= item.("Section Header", "51:5580") do %><div class="ds__w361"><%= molecule "section_header" %></div><% end %>
+  <%= item.("Row/List", "52:331") do %><div class="ds__row"><% ComponentsHelper::DOMAINS.each do |d| %><%= cell.("Domain=#{d.capitalize}", "ds__w361") { molecule "row_list", domain: d } %><% end %></div><% end %>
+  <%= item.("Row/Setting", "52:435") do %><div class="ds__row"><% %w[disclosure toggle value].each do |t| %><%= cell.("Trailing=#{t.capitalize}", "ds__w361") { molecule "row_setting", trailing: t } %><% end %></div><% end %>
+  <%= item.("Note/Why", "52:436") do %><div style="width:321px"><%= molecule "note_why" %></div><% end %>
+  <%= item.("Stat Block · Week Layers", "52:439 · 52:443") do %><div class="ds__row"><div style="width:139px"><%= molecule "stat_block" %></div><%= molecule "week_layers" %></div><% end %>
+  <%= item.("Pearl Step", "52:463") do %><div class="ds__row"><% %w[day month quarter now].each do |s| %><%= molecule "pearl_step", stage: s %><% end %></div><% end %>
+  <%= item.("Community Post", "52:464") do %><div class="ds__w361"><%= molecule "community_post" %></div><% end %>
+  <%= item.("Search Field", "61:1967") do %><div class="ds__w361"><%= molecule "search_field" %></div><% end %>
+  <%= item.("Card/Article", "65:454") do %>
+    <div class="ds__row"><% ComponentsHelper::DOMAINS.each do |d| %><%= cell.("Size=Wide, Domain=#{d.capitalize}", "ds__w361") { molecule "card_article", domain: d } %><% end %></div>
+    <div class="ds__row"><% ComponentsHelper::DOMAINS.each do |d| %><%= cell.("Size=Square, Domain=#{d.capitalize}", "ds__w175") { molecule "card_article", domain: d, size: "square" } %><% end %></div>
+  <% end %>
+  <%= item.("Tile/Domain Layer", "113:11101") do %>
+    <div class="ds__row"><% [["strength", "62", "+4"], ["mind", "62", "+2"], ["sleep", "62", "+5"], ["nutrition", "62", "+1"]].each do |d, c, dl| %><%= cell.("Domain=#{d.capitalize}", "ds__w100") { molecule "tile_domain", domain: d, count: c, delta: dl } %><% end %></div>
+  <% end %>
+  <%= item.("Card/Photo", "116:604") do %><div class="ds__row"><%= cell.("Size=Wide", "ds__w361") { molecule "card_photo" } %><%= cell.("Size=Square", "ds__w175") { molecule "card_photo", size: "square" } %></div><% end %>
+</section>
+
+<section class="ds__level">
+  <h2 class="text-title-section">04.3 Organisms</h2>
+  <%= item.("Tab Bar", "53:168") do %><div class="ds__row"><% %w[today library profile].each do |a| %><%= cell.("Active=#{a.capitalize}", "ds__phone") { organism "tab_bar", active: a } %><% end %></div><% end %>
+  <%= item.("Header/Screen", "53:204") do %><div class="ds__row"><% %w[none above below].each do |l| %><%= cell.("Layout=#{l.capitalize}", "ds__w361") { organism "header_screen", layout: l } %><% end %></div><% end %>
+  <%= item.("Card/Today Action", "53:270") do %><div class="ds__row"><%= cell.("State=Default", "ds__w361") { organism "card_today" } %><%= cell.("State=Done", "ds__w361") { organism "card_today", state: "done" } %></div><% end %>
+  <%= item.("Card/Knowledge", "53:271") do %><div class="ds__w361"><%= organism "card_knowledge" %></div><% end %>
+  <%= item.("Card/Stat · Card/Next Layer", "53:319 · 54:180") do %><div class="ds__row"><%= cell.("Type=Week", "ds__w175") { organism "card_stat" } %><%= cell.("Type=Pearl", "ds__w175") { organism "card_stat", type: "pearl" } %><%= cell.("Card/Next Layer", "ds__w175") { organism "card_next_layer" } %></div><% end %>
+  <%= item.("Card/Core · Card/Pearl Growth", "54:201 · 54:210") do %><div class="ds__row"><div class="ds__w361"><%= organism "card_core" %></div><div class="ds__w361"><%= organism "card_pearl_growth" %></div></div><% end %>
+  <%= item.("List/Group", "54:794") do %><div class="ds__row"><%= cell.("Type=Articles", "ds__w361") { organism "list_group" } %><%= cell.("Type=Settings", "ds__w361") { organism "list_group", type: "settings" } %></div><% end %>
+  <%= item.("Card/Community Total · Hero/Pearl", "54:795 · 54:805") do %><div class="ds__row"><div class="ds__w361"><%= organism "card_community_total" %></div><div class="ds__w361"><%= organism "hero_pearl" %></div></div><% end %>
+  <%= item.("Grid/Articles · Card/Calendar", "65:7594 · 67:7385") do %><div class="ds__row"><div class="ds__w361"><%= organism "grid_articles" %></div><div class="ds__w361"><%= organism "card_calendar" %></div></div><% end %>
+</section>
+
+<section class="ds__level">
+  <h2 class="text-title-section">04.3 Organisms · Desktop</h2>
+  <%= item.("Nav/Desktop", "181:817") do %>
+    <div class="ds__wide stack"><% [["today","Active=Today"],["library","Active=Library"],["profile","Active=Profile"],["focus","Active=Focus"]].each do |a, l| %><%= cell.(l) { organism "nav_desktop", active: a } %><% end %></div>
+  <% end %>
+  <%= item.("Grid/Desktop 992", "grid style") do %>
+    <div class="ds__wide"><div class="ds__grid"><% 12.times do %><i></i><% end %></div></div>
+  <% end %>
+</section>
+
+<section class="ds__level">
+  <h2 class="text-title-section">04.4 Widgets</h2>
+  <div class="ds__row">
+    <%= cell.("Widget/Layer of the Day · 81:2") { widget "layer_of_the_day" } %>
+    <%= cell.("Widget/Today List · 81:38") { widget "today_list" } %>
+    <%= cell.("Widget/Join · 82:25") { widget "join" } %>
+    <%= cell.("Widget/Calendar · 82:62") { widget "calendar" } %>
+    <%= cell.("Widget/Phrase · 83:94") { widget "phrase" } %>
+    <%= cell.("Widget/Pearl Glow · 83:114") { widget "pearl_glow" } %>
+    <%= cell.("Widget/Check-in · 84:97") { widget "check_in" } %>
+    <%= cell.("suggestions · 107:16379") { widget "suggestions" } %>
+  </div>
+</section>
+
+<section class="ds__level">
+  <h2 class="text-title-section">Сайт (нет в Figma)</h2>
+  <%= item.("Card/Subscribe", "собран из атомов по образцу Card/Community Total") do %><div class="ds__w361"><%= organism "card_subscribe", subscriber: Subscriber.new %></div><% end %>
+</section>

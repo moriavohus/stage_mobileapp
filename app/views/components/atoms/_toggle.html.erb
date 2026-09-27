@@ -1,0 +1,2 @@
+<% name = local_assigns.fetch(:name) { nil }; checked = true if local_assigns[:checked].nil?; label = local_assigns.fetch(:label) { "" } %>
+<label class="toggle"><input type="checkbox" <%= "checked" if checked %> name="<%= name %>" aria-label="<%= label %>"><span class="toggle__ax"></span><span class="toggle__knob"></span></label>

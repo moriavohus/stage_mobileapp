@@ -1,0 +1,8 @@
+<% label = local_assigns.fetch(:label) { "Начать" }; style = local_assigns.fetch(:style) { "primary" }; size = local_assigns.fetch(:size) { "large" }; block = local_assigns.fetch(:block) { false }; href = local_assigns.fetch(:href) { nil }; type = local_assigns.fetch(:type) { "submit" }; css = local_assigns.fetch(:css) { nil } %>
+<% classes = ["button", "button--#{style}", ("button--small" if size == "small"), ("button--block" if block), css,
+              (size == "large" && style != "plain" ? "text-body-l-strong" : "text-body-l")].compact %>
+<% if href %>
+  <%= link_to label, href, class: classes %>
+<% else %>
+  <%= tag.button label, type:, class: classes %>
+<% end %>

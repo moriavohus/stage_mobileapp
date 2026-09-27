@@ -1,0 +1,6 @@
+<% domain = local_assigns.fetch(:domain) { "strength" }; tone = local_assigns.fetch(:tone) { "lime" }; variant = local_assigns.fetch(:variant) { "medium" } %>
+<% base, slot = variant == "small" ? [28.0, 20.0] : [46.0, 28.0] %>
+<% px = (local_assigns[:size] || base).to_f; k = px / base %>
+<span class="avatar avatar--<%= tone %>" style="--av: <%= px %>px; --av-slot: <%= (slot * k).round(3) %>px; --av-pad: <%= (3 * k).round(3) %>px; --av-blur: <%= (4 * k).round(3) %>px">
+  <span class="avatar__slot"><%= stage_glyph(domain) %></span>
+</span>

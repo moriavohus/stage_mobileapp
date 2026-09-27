@@ -1,0 +1,33 @@
+<%= organism "header_screen", title: "Staging, not aging", eyebrow: "Stage · женское здоровье 30–40", layout: "above" %>
+<div class="grid-2">
+  <%= organism "hero_pearl", value: Post.published.count, caption: "слоёв знаний уже в библиотеке", shape: "#{@categories.size} темы" %>
+  <div class="stack">
+    <p class="text-body-l">Одно маленькое действие в день — и сила копится слоями, как перламутр вокруг ядра. Готовимся к перименопаузе до того, как она началась.</p>
+    <%= organism "card_subscribe", subscriber: @subscriber %>
+  </div>
+</div>
+
+<% if (today = @exercises.first) %>
+  <%= molecule "section_header", title: "Так выглядит слой дня" %>
+  <div class="grid-2">
+    <%= organism "card_today", title: today.title, meta: [minutes_label(today.duration_minutes), today.kind_label.downcase].compact.join(", "),
+          domain: today.category.domain, domain_label: domain_label(today.category.domain), why: today.summary,
+          href: post_path(today), chip_href: category_path(today.category) %>
+    <div class="stack"><% @exercises.drop(1).each do |p| %><%= molecule "row_exercise", **row_exercise_props(p) %><% end %></div>
+  </div>
+<% end %>
+
+<%= molecule "section_header", title: "Темы", action_label: "Все", action_href: categories_path %>
+<div class="grid-tiles">
+  <% @categories.each do |c| %><%= molecule "tile_domain", domain: c.domain, label: domain_label(c.domain), count: @counts.fetch(c.id, 0), delta: nil, href: category_path(c) %><% end %>
+</div>
+
+<% if @programs.any? %>
+  <%= molecule "section_header", title: "Программы", action_label: "Все", action_href: posts_path(kind: "program") %>
+  <%= organism "carousel_programs", items: @programs.map { |p| card_program_props(p) } %>
+<% end %>
+
+<% if @articles.any? %>
+  <%= molecule "section_header", title: "Знания", action_label: "Все", action_href: posts_path(kind: "article") %>
+  <%= organism "grid_articles", items: @articles.map { |p| article_item(p) } %>
+<% end %>

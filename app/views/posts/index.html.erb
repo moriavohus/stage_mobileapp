@@ -1,0 +1,4 @@
+<% content_for :title, "Материалы" %>
+<%= organism "header_screen", title: (@kind ? Post::KIND_PLURALS[@kind] : "Все материалы") %>
+<%= molecule "filter_bar", items: kind_filter_items(current: @kind, path: ->(k) { posts_path(kind: k) }) %>
+<%= organism "grid_articles", items: @posts.map { |p| article_item(p) } %>

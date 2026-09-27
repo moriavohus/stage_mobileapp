@@ -1,0 +1,12 @@
+<% author = local_assigns.fetch(:author) { "Лиза_34" }; meta = local_assigns.fetch(:meta) { "30+ и сила · 3 ч" }; text = local_assigns.fetch(:text) { "Третью неделю делаю приседания у стены. Сегодня поднялась на шестой этаж и даже не заметила." }; support = local_assigns.fetch(:support) { "Поддержать · 12" }; domain = local_assigns.fetch(:domain) { "strength" } %>
+<article class="community-post surface-lavender">
+  <span class="ios-row">
+    <span class="ios-row__avatar"><%= atom "avatar", domain:, tone: "lavender", variant: "small", size: 46 %></span>
+    <span class="ios-row__content"><span class="ios-row__text">
+      <span class="ios-row__title text-ios-body"><%= author %></span>
+      <span class="ios-row__subtitle text-ios-subheadline"><%= meta %></span>
+    </span></span>
+  </span>
+  <p class="community-post__text text-body-l"><%= text %></p>
+  <%= atom "button", label: support, style: "glass", size: "small", type: "button" %>
+</article>

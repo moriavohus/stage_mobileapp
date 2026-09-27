@@ -1,0 +1,25 @@
+<%= form_with model: [:admin, post], class: "form surface-lavender" do |f| %>
+  <%= render "admin/errors", record: post %>
+  <div class="grid-2">
+    <div><%= f.label :category_id, "Категория" %><%= f.collection_select :category_id, Category.ordered, :id, :name %></div>
+    <div><%= f.label :kind %><%= f.select :kind, Post::KINDS.invert %></div>
+  </div>
+  <div><%= f.label :title %><%= f.text_field :title, required: true %></div>
+  <div><%= f.label :slug %><%= f.text_field :slug, placeholder: "заполнится из заголовка" %></div>
+  <div><%= f.label :summary, "Кратко — «зачем»" %><%= f.text_area :summary, rows: 2 %></div>
+  <div><%= f.label :body %><%= f.text_area :body, rows: 10 %></div>
+  <div class="grid-2">
+    <div><%= f.label :duration_minutes %><%= f.number_field :duration_minutes, min: 1 %></div>
+    <div><%= f.label :video_url, "Видео (YouTube или VK)" %><%= f.url_field :video_url %></div>
+  </div>
+  <div class="grid-2">
+    <div><%= f.label :cover, "Обложка (файл)" %><%= f.file_field :cover, accept: "image/*" %>
+      <% if post.cover.attached? %><label><%= f.check_box :remove_cover, {}, "1", "0" %> убрать загруженную</label><% end %></div>
+    <div><%= f.label :cover_url, "или ссылка на обложку" %><%= f.text_field :cover_url %></div>
+  </div>
+  <div class="grid-2">
+    <div><label><%= f.check_box :published %> Опубликовано</label></div>
+    <div><%= f.label :published_at %><%= f.datetime_local_field :published_at %></div>
+  </div>
+  <%= atom "button", label: "Сохранить", style: "primary" %>
+<% end %>

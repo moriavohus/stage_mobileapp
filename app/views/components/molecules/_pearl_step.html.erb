@@ -1,0 +1,2 @@
+<% stage = local_assigns.fetch(:stage) { "day" }; label = local_assigns.fetch(:label) { { "day" => "1 день", "month" => "1 месяц", "quarter" => "3 месяца", "now" => "Сейчас" }.fetch(stage) } %>
+<div class="pearl-step"><%= atom "pearl", size: "m" %><span class="pearl-step__label text-body-l"><%= label %></span></div>

@@ -1,0 +1,4 @@
+<% icon_name = local_assigns.fetch(:icon_name) { "today" }; label = local_assigns.fetch(:label) { "Сегодня" }; active = local_assigns.fetch(:active) { false }; href = local_assigns.fetch(:href) { "#" } %>
+<%= link_to href, class: "tab-item", aria: { current: (active ? "page" : nil), label: label } do %>
+  <%= icon icon_name %><span class="tab-item__indicator"></span>
+<% end %>

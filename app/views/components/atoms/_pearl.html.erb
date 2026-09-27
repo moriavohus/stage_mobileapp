@@ -1,0 +1,2 @@
+<% size = local_assigns.fetch(:size) { "m" }; px = local_assigns.fetch(:px) { { "s" => 56, "m" => 72, "l" => 128, "xl" => 240 }.fetch(size) } %>
+<%= image_tag "pearl/#{size}.svg", alt: "", class: "pearl", style: "--pearl: #{px}px", aria: { hidden: true } %>

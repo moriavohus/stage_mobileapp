@@ -1,0 +1,29 @@
+<% content_for :title, "Лента" %>
+<%= organism "header_screen", title: "Лента", eyebrow: "Материалы и обсуждения по темам", layout: "below" %>
+<%= molecule "filter_bar", items: feed_filter_items(@section) %>
+
+<% if @section != "discussions" %>
+  <% if @programs.any? %>
+    <%= molecule "section_header", title: "Программы", action_label: "Все", action_href: posts_path(kind: "program") %>
+    <%= organism "carousel_programs", items: @programs.map { |p| card_program_props(p) } %>
+  <% end %>
+  <% if @exercises.any? %>
+    <%= molecule "section_header", title: "Упражнения", action_label: "Все", action_href: posts_path(kind: "exercise") %>
+    <div class="stack"><% @exercises.each do |p| %><%= molecule "row_exercise", **row_exercise_props(p) %><% end %></div>
+  <% end %>
+  <% if @articles.any? %>
+    <%= molecule "section_header", title: "Знания", action_label: "Все", action_href: posts_path(kind: "article") %>
+    <%= organism "grid_articles", items: @articles.map { |p| article_item(p) } %>
+  <% end %>
+<% end %>
+
+<% if @section != "knowledge" %>
+  <%= molecule "section_header", title: "Обсуждения", action_label: ("Все" unless @section == "discussions"), action_href: feed_path(section: "discussions") %>
+  <div class="grid-2">
+    <%= widget "join" %>
+    <div class="stack">
+      <% @circles.each do |c| %><%= molecule "row_exercise", **circle_row_props(c) %><% end %>
+      <%= molecule "community_post", **community_post_props(@latest_post) if @latest_post %>
+    </div>
+  </div>
+<% end %>

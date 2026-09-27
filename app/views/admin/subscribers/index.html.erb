@@ -1,0 +1,11 @@
+<% content_for :title, "Подписчицы" %>
+<%= molecule "section_header", title: "Подписчицы · #{@subscribers.size}", action_label: "Скачать CSV", action_href: admin_subscribers_path(format: :csv), level: 1 %>
+<table class="table">
+  <thead><tr><th>Почта</th><th>Источник</th><th>Когда</th><th></th></tr></thead>
+  <tbody>
+    <% @subscribers.each do |s| %>
+      <tr><td><%= s.email %></td><td class="muted"><%= s.source %></td><td class="muted"><%= l(s.created_at, format: :short) %></td>
+        <td><%= button_to "Удалить", admin_subscriber_path(s), method: :delete, class: "button button--plain", form_class: "inline-form", data: { turbo_confirm: "Удалить #{s.email}?" } %></td></tr>
+    <% end %>
+  </tbody>
+</table>

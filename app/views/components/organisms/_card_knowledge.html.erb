@@ -1,0 +1,6 @@
+<% title = local_assigns.fetch(:title) { "Почему мышцы важны уже в 30" }; text = local_assigns.fetch(:text) { "После 30 мышечная масса понемногу снижается, а регулярная силовая нагрузка помогает её сохранять." }; action_label = local_assigns.fetch(:action_label) { "Читать, 3 минуты" }; href = local_assigns.fetch(:href) { nil } %>
+<article class="card-knowledge surface-lavender">
+  <h3 class="card-knowledge__title text-title-section"><%= title %></h3>
+  <p class="card-knowledge__text text-body-m"><%= text %></p>
+  <%= atom "button", label: action_label, style: "plain", href: href, type: "button" if action_label %>
+</article>

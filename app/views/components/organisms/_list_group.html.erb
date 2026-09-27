@@ -1,0 +1,11 @@
+<% type = local_assigns.fetch(:type) { "articles" }
+   rows = local_assigns.fetch(:rows) { type == "articles" ?
+     [["Почему мышцы важны уже в 30", "3 минуты", "strength"], ["Перименопауза простыми словами", "6 минут", "mind"],
+      ["Как кофеин влияет на сон", "4 минуты", "sleep"], ["Белок после 30: что важно знать", "5 минут", "nutrition"]].map { |t, s, d| { title: t, subtitle: s, domain: d } } :
+     [{ title: "Приватность и данные", trailing: "disclosure" }, { title: "Напоминания", trailing: "toggle" }, { title: "Выгрузить данные", trailing: "disclosure" }] } %>
+<div class="list-group list-group--<%= type %> surface-lavender">
+  <% rows.each_with_index do |row, i| %>
+    <% if i.positive? %><div class="list-group__separator" aria-hidden="true"></div><% end %>
+    <%= type == "articles" ? molecule("row_list", **row) : molecule("row_setting", **row) %>
+  <% end %>
+</div>

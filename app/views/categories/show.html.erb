@@ -1,0 +1,14 @@
+<% content_for :title, @category.name %>
+<%= organism "header_screen", title: @category.name, eyebrow: @category.description, layout: "below" %>
+<%= molecule "filter_bar", items: category_filter_items(Category.ordered, current: @category) %>
+<%= molecule "filter_bar", items: kind_filter_items(current: @kind, path: ->(k) { category_path(@category, kind: k) }) %>
+<% if @posts.empty? %>
+  <p class="muted">Здесь пока пусто — материалы скоро появятся.</p>
+<% else %>
+  <% programs, rest = @posts.partition { |p| p.kind == "program" } %>
+  <% if programs.any? %><%= molecule "section_header", title: "Программы" %><%= organism "carousel_programs", items: programs.map { |p| card_program_props(p) } %><% end %>
+  <% exercises = rest.select { |p| p.kind == "exercise" } %>
+  <% if exercises.any? %><%= molecule "section_header", title: "Упражнения" %><div class="stack"><% exercises.each do |p| %><%= molecule "row_exercise", **row_exercise_props(p) %><% end %></div><% end %>
+  <% articles = rest.select { |p| p.kind == "article" } %>
+  <% if articles.any? %><%= molecule "section_header", title: "Знания" %><%= organism "grid_articles", items: articles.map { |p| article_item(p) } %><% end %>
+<% end %>

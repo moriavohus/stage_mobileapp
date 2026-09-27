@@ -1,0 +1,2 @@
+<% domain = local_assigns.fetch(:domain) { "strength" } %>
+<span class="layer-segment <%= "layer-segment--empty" if domain.nil? || domain == "empty" %>"></span>

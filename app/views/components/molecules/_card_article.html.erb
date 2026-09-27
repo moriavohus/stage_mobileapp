@@ -1,0 +1,6 @@
+<% title = local_assigns.fetch(:title) { "Почему мышцы важны уже в 30" }; meta = local_assigns.fetch(:meta) { "3 минуты" }; domain = local_assigns.fetch(:domain) { "strength" }; size = local_assigns.fetch(:size) { "wide" }; href = local_assigns.fetch(:href) { nil } %>
+<%= content_tag(href ? :a : :div, href: href, class: "card-article card-article--#{size} card-article--#{domain} surface-lavender") do %>
+  <%= image_tag "frosted/#{size}-#{domain}.svg", alt: "", class: "card-article__art", aria: { hidden: true } %>
+  <span class="card-article__title <%= size == "square" ? "text-title-widget" : "text-title-section" %>"><%= title %></span>
+  <span class="card-article__meta text-body-l"><%= meta %></span>
+<% end %>

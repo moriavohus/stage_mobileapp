@@ -1,0 +1,7 @@
+<% title = local_assigns.fetch(:title) { "Новый слой" }; text = local_assigns.fetch(:text) { "Приседания у стены, 6 минут" }; domain = local_assigns.fetch(:domain) { "strength" }; domain_label = local_assigns.fetch(:domain_label) { "Сила" }; href = local_assigns.fetch(:href) { nil } %>
+<article class="card-next surface-lavender">
+  <h3 class="card-next__title text-title-section"><%= title %></h3>
+  <p class="card-next__text text-body-l"><%= text %></p>
+  <%= atom "chip", label: domain_label, domain: %>
+  <%= atom "button", label: "Начать", style: "primary", size: "small", block: true, href: href, type: "button" %>
+</article>

@@ -1,0 +1,6 @@
+<% value = local_assigns.fetch(:value) { "184" }; unit = local_assigns.fetch(:unit) { "слоя" } %>
+<section class="widget w-pearl surface-lime">
+  <%= atom "pearl", size: "s", px: 44 %>
+  <p class="text-caption-m">Жемчужина</p>
+  <p class="w-pearl__value"><span class="text-display-l"><%= value %></span><span class="text-body-l"><%= unit %></span></p>
+</section>

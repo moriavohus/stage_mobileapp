@@ -1,0 +1,13 @@
+<% title = local_assigns.fetch(:title) { "Приватность и данные" }; trailing = local_assigns.fetch(:trailing) { "disclosure" }; value = local_assigns.fetch(:value) { "Русский" }; href = local_assigns.fetch(:href) { nil }; checked = true if local_assigns[:checked].nil? %>
+<%= content_tag(href && trailing != "toggle" ? :a : :div, href: (href if trailing != "toggle"), class: "row-setting") do %>
+  <span class="ios-row ios-row--regular">
+    <span class="ios-row__content">
+      <span class="ios-row__text"><span class="ios-row__title text-ios-body"><%= title %></span></span>
+      <% if trailing == "toggle" %>
+        <%= atom "toggle", checked:, label: title %>
+      <% else %>
+        <%= render "components/molecules/ios_row_trailing", detail: (value if trailing == "value") %>
+      <% end %>
+    </span>
+  </span>
+<% end %>

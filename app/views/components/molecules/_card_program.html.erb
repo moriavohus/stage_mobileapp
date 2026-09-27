@@ -1,0 +1,9 @@
+<% title = local_assigns.fetch(:title) { "Сила за 4 недели" }; meta = local_assigns.fetch(:meta) { "28 заданий" }; domain = local_assigns.fetch(:domain) { "strength" }; href = local_assigns.fetch(:href) { nil } %>
+<% surface = { "strength" => "sky", "mind" => "lavender", "sleep" => "lime", "nutrition" => "lavender" }.fetch(domain) %>
+<%= content_tag(href ? :a : :div, href: href, class: "card-program card-program--#{domain} surface-#{surface}") do %>
+  <span class="card-program__icon"><%= stage_glyph(domain) %></span>
+  <span class="card-program__text">
+    <span class="card-program__title text-title-section"><%= title %></span>
+    <span class="card-program__meta text-body-l"><%= meta %></span>
+  </span>
+<% end %>
