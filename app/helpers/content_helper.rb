@@ -24,7 +24,7 @@ module ContentHelper
 
   def short_ago(time)
     s = (Time.current - time).to_i
-    s < 3600 ? "#{[s / 60, 1].max} мин" : s < 86_400 ? "#{s / 3600} ч" : "#{s / 86_400} д"
+    s < 3600 ? "#{[ s / 60, 1 ].max} мин" : s < 86_400 ? "#{s / 3600} ч" : "#{s / 86_400} д"
   end
 
   def circle_row_props(circle)

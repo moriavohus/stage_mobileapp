@@ -9,6 +9,6 @@ class CreateCirclePosts < ActiveRecord::Migration[8.1]
       t.datetime :published_at
       t.timestamps
     end
-    add_index :circle_posts, [:circle_id, :published_at]
+    add_index :circle_posts, [ :circle_id, :published_at ]
   end
 end
