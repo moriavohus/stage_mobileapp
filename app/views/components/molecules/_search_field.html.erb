@@ -1,0 +1,5 @@
+<% placeholder = local_assigns.fetch(:placeholder) { "Упражнения, статьи, программы" }; name = local_assigns.fetch(:name) { "q" }; value = local_assigns.fetch(:value) { nil }; url = local_assigns.fetch(:url) { nil } %>
+<%= content_tag(url ? :form : :div, action: url, method: (url ? "get" : nil), class: "search-field", role: "search") do %>
+  <%= icon "search" %>
+  <input class="search-field__input text-ios-body" type="search" name="<%= name %>" value="<%= value %>" placeholder="<%= placeholder %>" aria-label="<%= placeholder %>">
+<% end %>

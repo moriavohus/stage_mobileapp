@@ -1,0 +1,10 @@
+<% who = local_assigns.fetch(:who) { "Лиза_34" }; activity = local_assigns.fetch(:activity) { "Тихая прогулка" }; domain = local_assigns.fetch(:domain) { "mind" }; lines = local_assigns.fetch(:lines) { ["Сб, 27 сентября", "10:00 – 10:30", "Парк у дома"] } %>
+<section class="widget w-join surface-lavender">
+  <div class="w-join__invite">
+    <div class="w-join__row"><%= atom "avatar", domain:, tone: "lavender", variant: "small", size: 34 %><span class="w-join__primary text-title-widget"><%= who %></span></div>
+    <p class="w-join__secondary text-title-widget">присоединится к тебе:</p>
+    <div class="w-join__row"><span class="w-join__primary text-title-widget"><%= activity %></span><span class="w-join__thumb surface-lavender"><%= domain_icon(domain, size: 22) %></span></div>
+  </div>
+  <div class="w-join__divider"></div>
+  <div class="w-join__when"><% lines.each do |l| %><p class="w-join__secondary text-title-widget"><%= l %></p><% end %></div>
+</section>

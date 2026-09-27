@@ -1,0 +1,6 @@
+<% content_for :title, @circle.name %>
+<%= organism "header_screen", title: @circle.name, eyebrow: "#{plural_ru(@circle.members_count, "участница", "участницы", "участниц")} · тема «#{domain_label(@circle.category.domain)}»", layout: "below" %>
+<%= molecule "note_why", text: "Поддерживаем, не оцениваем. Без советов по лечению и дозировкам — такое обсуждаем с врачом." %>
+<div class="grid-2">
+  <% @posts.each do |p| %><%= molecule "community_post", **community_post_props(p) %><% end %>
+</div>

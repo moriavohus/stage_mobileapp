@@ -1,0 +1,18 @@
+<% title = local_assigns.fetch(:title) { "Приседания у стены" }; meta = local_assigns.fetch(:meta) { "6 минут, дома" }; domain = local_assigns.fetch(:domain) { "strength" }; domain_label = local_assigns.fetch(:domain_label) { "Сила" }; why = local_assigns.fetch(:why) { "Сильные ноги сейчас — лёгкая лестница в шестьдесят." }
+   state = local_assigns.fetch(:state) { "default" }; href = local_assigns.fetch(:href) { nil }; chip_href = local_assigns.fetch(:chip_href) { nil } %>
+<article class="card-today surface-lime">
+  <div class="card-today__top">
+    <%= atom "chip", label: domain_label, domain:, href: chip_href %>
+    <%= atom "pearl", size: "m" %>
+  </div>
+  <div class="card-today__text">
+    <h3 class="card-today__title text-title-section"><%= title %></h3>
+    <p class="card-today__meta text-body-l"><%= meta %></p>
+  </div>
+  <%= molecule "note_why", text: why if why.present? %>
+  <% if state == "done" %>
+    <%= atom "button", label: "✓  Слой добавлен", style: "glass", block: true, type: "button", css: "is-pre" %>
+  <% else %>
+    <%= atom "button", label: "Начать", style: "primary", block: true, href: href, type: "button" %>
+  <% end %>
+</article>

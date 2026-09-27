@@ -1,0 +1,16 @@
+<% date = local_assigns.fetch(:date) { "Пятница, 25 сентября" } %>
+<section class="widget w-checkin">
+  <span class="w-checkin__aura" aria-hidden="true"></span>
+  <div class="w-checkin__header">
+    <%= atom "avatar", domain: "mind", tone: "lavender", variant: "small", size: 36 %>
+    <span class="w-checkin__date text-body-l"><%= date %></span>
+    <span class="w-checkin__add"><%= icon "plus" %></span>
+  </div>
+  <h3 class="w-checkin__title text-title-section">Как ты<br>сегодня?</h3>
+  <% [["circle", "Написать<br>в круг"], ["month", "Мой<br>месяц"]].each do |mod, label| %>
+    <div class="w-checkin__tile w-checkin__tile--<%= mod %> surface-lavender">
+      <p class="w-checkin__tile-label text-body-l"><%= label.html_safe %></p>
+      <span class="w-checkin__go"><%= icon "arrow-up-right" %></span>
+    </div>
+  <% end %>
+</section>

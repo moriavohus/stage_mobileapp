@@ -1,0 +1,11 @@
+<% title = local_assigns.fetch(:title) { "Библиотека" }; eyebrow = local_assigns.fetch(:eyebrow) { "Пятница, 25 сентября" }; layout = local_assigns.fetch(:layout) { "none" }; action_href = local_assigns.fetch(:action_href) { nil }; action_label = local_assigns.fetch(:action_label) { "Настройки" } %>
+<header class="header-screen">
+  <div class="header-screen__titles">
+    <% if layout == "above" %><p class="header-screen__eyebrow text-caption-m"><%= eyebrow %></p><% end %>
+    <h1 class="header-screen__title text-title-screen"><%= title %></h1>
+    <% if layout == "below" %><p class="header-screen__eyebrow text-caption-m"><%= eyebrow %></p><% end %>
+  </div>
+  <% if action_href %>
+    <%= link_to action_href, class: "header-screen__action surface-lavender", aria: { label: action_label } do %><%= icon "adjust" %><% end %>
+  <% end %>
+</header>

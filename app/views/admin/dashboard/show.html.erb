@@ -1,0 +1,9 @@
+<% content_for :title, "Сводка" %>
+<%= organism "header_screen", title: "Сводка" %>
+<div class="grid-4">
+  <% @stats.each do |label, value| %><div class="card-stat surface-lavender"><%= molecule "stat_block", title: label, value: value %></div><% end %>
+</div>
+<%= molecule "section_header", title: "Недавно изменённые", action_label: "Новый материал", action_href: new_admin_post_path %>
+<table class="table"><tbody>
+  <% @latest.each do |p| %><tr><td><%= p.title %></td><td class="muted"><%= p.category.name %></td><td><%= link_to "Изменить", edit_admin_post_path(p), class: "button button--plain" %></td></tr><% end %>
+</tbody></table>

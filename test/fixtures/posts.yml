@@ -1,0 +1,24 @@
+squat:
+  category: sila
+  title: Приседания у стены
+  slug: prisedaniya-u-steny
+  kind: exercise
+  summary: Сильные ноги сейчас.
+  body: Текст
+  duration_minutes: 6
+  published: true
+  published_at: <%= 2.days.ago.to_fs(:db) %>
+breath:
+  category: son
+  title: Дыхание 4-7-8
+  slug: dyhanie-4-7-8
+  kind: exercise
+  duration_minutes: 5
+  published: true
+  published_at: <%= 1.day.ago.to_fs(:db) %>
+draft:
+  category: son
+  title: Черновик
+  slug: chernovik
+  kind: article
+  published: false

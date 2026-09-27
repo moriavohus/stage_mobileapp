@@ -1,0 +1,17 @@
+<% active = local_assigns.fetch(:active) { "today" }; back_href = local_assigns.fetch(:back_href) { "#" }; brand_href = local_assigns.fetch(:brand_href) { "#" }
+   items = local_assigns.fetch(:items) { [["today", "today", "Сегодня", "#"], ["library", "library", "Лента", "#"], ["profile", "profile", "Профиль", "#"]] } %>
+<nav class="nav-desktop" aria-label="Основная навигация">
+  <div class="nav-desktop__container">
+    <%= link_to brand_href, class: "nav-desktop__brand" do %><%= atom "pearl", size: "s", px: 44.8 %><span class="text-title-widget">Stage</span><% end %>
+    <% if active == "focus" %>
+      <%= atom "button", label: "← Назад", style: "plain", href: back_href %>
+    <% else %>
+      <div class="nav-desktop__tabs">
+        <% items.each do |key, icon_name, label, href| %>
+          <%= atom "chip", label:, icon_name:, href:, selected: key == active %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= atom "avatar", domain: "mind", tone: "lavender", variant: "small" %>
+  </div>
+</nav>

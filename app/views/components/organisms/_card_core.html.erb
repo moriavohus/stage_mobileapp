@@ -1,0 +1,6 @@
+<% quote = local_assigns.fetch(:quote) { "Хочу в шестьдесят подниматься по лестнице так же легко, как сейчас" }; href = local_assigns.fetch(:href) { nil } %>
+<article class="card-core surface-lavender">
+  <p class="card-core__label text-body-l">Твоё ядро</p>
+  <div class="card-core__quote"><p class="text-title-widget"><%= quote %></p></div>
+  <%= atom "button", label: "Изменить ядро", style: "plain", css: "button--h38", href: href, type: "button" %>
+</article>

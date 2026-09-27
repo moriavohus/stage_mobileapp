@@ -1,0 +1,11 @@
+<% domain = local_assigns.fetch(:domain) { "strength" }; label = local_assigns.fetch(:label) { { "strength" => "Сила", "mind" => "Мозг", "sleep" => "Сон", "nutrition" => "Питание" }.fetch(domain) }; count = local_assigns.fetch(:count) { "62" }; delta = local_assigns.fetch(:delta) { "+4" }; href = local_assigns.fetch(:href) { nil } %>
+<%= content_tag(href ? :a : :div, href: href, class: "tile-domain surface-lavender") do %>
+  <span class="tile-domain__top">
+    <%= domain_icon(domain, size: 40) %>
+    <% if delta.present? %><span class="tile-domain__delta"><%= atom "chip", label: delta, show_icon: false, inset: true %></span><% end %>
+  </span>
+  <span class="tile-domain__text">
+    <span class="tile-domain__label text-body-l"><%= label %></span>
+    <span class="tile-domain__count text-title-section"><%= count %></span>
+  </span>
+<% end %>

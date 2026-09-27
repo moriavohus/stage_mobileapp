@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title><%= page_title(["Админка", content_for(:title)].compact.join(" · ")) %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "00_quarks", "10_atoms", "20_molecules", "30_organisms", "35_widgets", "40_templates", "50_admin", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="text-body-l">
+    <main class="page" style="padding-bottom: var(--space-40)">
+      <nav class="admin-nav" aria-label="Разделы админки">
+        <%= atom "chip", label: "Сводка", href: admin_root_path, selected: controller_name == "dashboard" %>
+        <%= atom "chip", label: "Категории", href: admin_categories_path, selected: controller_name == "categories" %>
+        <%= atom "chip", label: "Материалы", href: admin_posts_path, selected: controller_name == "posts" %>
+        <%= atom "chip", label: "Подписчицы", href: admin_subscribers_path, selected: controller_name == "subscribers" %>
+        <%= atom "chip", label: "На сайт →", href: root_path %>
+      </nav>
+      <% flash.each do |_t, m| %><p class="flash" role="status"><%= m %></p><% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

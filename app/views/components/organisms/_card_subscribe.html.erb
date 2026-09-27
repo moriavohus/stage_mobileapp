@@ -1,0 +1,15 @@
+<section id="subscribe" class="card-subscribe surface-lavender" aria-labelledby="subscribe-title">
+  <h2 id="subscribe-title" class="card-subscribe__title text-title-section">Узнать первой о запуске</h2>
+  <p class="card-subscribe__text text-body-l">Оставь почту — напишем, когда Stage откроется. Без спама и без передачи третьим лицам.</p>
+  <%= form_with model: subscriber, url: subscribers_path, class: "card-subscribe__form" do |f| %>
+    <div class="field">
+      <%= f.label :email, "Почта", class: "visually-hidden" %>
+      <%= f.email_field :email, class: "field__input text-ios-body", placeholder: "you@example.com", required: true, autocomplete: "email",
+            aria: { invalid: subscriber.errors[:email].any?, describedby: ("email-error" if subscriber.errors[:email].any?) } %>
+      <% if subscriber.errors[:email].any? %>
+        <span id="email-error" class="field__error text-body-m">Почта <%= subscriber.errors[:email].first %></span>
+      <% end %>
+    </div>
+    <%= atom "button", label: "Подписаться", style: "primary", block: true %>
+  <% end %>
+</section>

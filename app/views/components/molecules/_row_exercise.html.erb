@@ -1,0 +1,13 @@
+<% title = local_assigns.fetch(:title) { "Быстрая ходьба" }; subtitle = local_assigns.fetch(:subtitle) { "на улице" }; detail = local_assigns.fetch(:detail) { "20 мин" }; domain = local_assigns.fetch(:domain) { "strength" }; tone = local_assigns.fetch(:tone) { "lime" }; href = local_assigns.fetch(:href) { nil } %>
+<%= content_tag(href ? :a : :div, href: href, class: "row-exercise row-exercise--#{tone}") do %>
+  <span class="ios-row">
+    <span class="ios-row__avatar"><%= atom "avatar", domain:, tone: %></span>
+    <span class="ios-row__content">
+      <span class="ios-row__text">
+        <span class="ios-row__title text-ios-body"><%= title %></span>
+        <% if subtitle.present? %><span class="ios-row__subtitle text-ios-subheadline"><%= subtitle %></span><% end %>
+      </span>
+      <%= render "components/molecules/ios_row_trailing", detail: %>
+    </span>
+  </span>
+<% end %>

@@ -1,0 +1,8 @@
+<% state = local_assigns.fetch(:state) { "rest" }; number = local_assigns.fetch(:number) { "25" }; width = local_assigns.fetch(:width) { 44 }; muted = local_assigns.fetch(:muted) { false }; soft = local_assigns.fetch(:soft) { false } %>
+<% dots = { "layers1" => 1, "layers2" => 2, "layers3" => 3, "today" => 1 }.fetch(state, 0) %>
+<span class="calendar-day calendar-day--<%= state %> <%= "calendar-day--muted" if muted %> <%= "calendar-day--soft" if soft %>" style="--day-w: <%= width %>px">
+  <% unless state == "blank" %>
+    <span class="calendar-day__circle text-body-l"><%= number %></span>
+    <% if dots.positive? %><span class="calendar-day__dots"><% dots.times do %><i></i><% end %></span><% end %>
+  <% end %>
+</span>

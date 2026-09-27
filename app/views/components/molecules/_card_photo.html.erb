@@ -1,0 +1,9 @@
+<% size = local_assigns.fetch(:size) { "wide" }; title = local_assigns.fetch(:title) { "Перименопауза простыми словами" }; meta = local_assigns.fetch(:meta) { (size == "wide" ? "6 минут" : "4 минуты") }; href = local_assigns.fetch(:href) { nil } %>
+<% image = local_assigns.fetch(:image) { nil }; figma_photo = image.nil?; image = local_assigns.fetch(:image) { "photos/#{size}.jpg" } %>
+<%= content_tag(href ? :a : :div, href: href, class: "card-photo card-photo--#{size} surface-lavender") do %>
+  <span class="card-photo__media"><%= image_tag image, alt: "", loading: "lazy", class: ("is-figma-crop" if figma_photo && size == "wide") %></span>
+  <span class="card-photo__text">
+    <span class="card-photo__title <%= size == "square" ? "text-title-phrase" : "text-title-widget" %>"><%= title %></span>
+    <span class="card-photo__meta text-body-l"><%= meta %></span>
+  </span>
+<% end %>

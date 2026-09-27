@@ -1,0 +1,24 @@
+<% month = local_assigns.fetch(:month) { "Сентябрь 2026" }; summary = local_assigns.fetch(:summary) { "34 слоя за сентябрь" }
+   weeks = local_assigns.fetch(:weeks) { [
+     [["blank"], ["layers2", 1], ["layers1", 2], ["rest", 3], ["layers2", 4], ["layers1", 5], ["rest", 6]],
+     [["layers3", 7], ["layers1", 8], ["layers2", 9], ["layers1", 10], ["rest", 11], ["layers2", 12], ["layers1", 13]],
+     [["layers2", 14], ["layers1", 15], ["rest", 16], ["layers3", 17], ["layers2", 18], ["layers1", 19], ["rest", 20]],
+     [["layers2", 21], ["layers1", 22], ["layers2", 23], ["layers3", 24], ["today", 25], ["future", 26], ["future", 27]],
+     [["future", 28], ["future", 29], ["future", 30], ["blank"], ["blank"], ["blank"], ["blank"]]] } %>
+<article class="card-calendar surface-lavender">
+  <div class="card-calendar__header">
+    <h3 class="card-calendar__title text-title-section"><%= month %></h3>
+    <div class="card-calendar__nav">
+      <% [["prev", "Предыдущий месяц"], ["next", "Следующий месяц"]].each do |dir, label| %>
+        <button type="button" class="card-calendar__nav-button card-calendar__nav-button--<%= dir %> surface-lavender" aria-label="<%= label %>"><span class="liquid-glass"></span><%= icon "chevron-right" %></button>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-calendar__weekdays text-body-l"><% %w[Пн Вт Ср Чт Пт Сб Вс].each do |d| %><span><%= d %></span><% end %></div>
+  <div class="card-calendar__grid">
+    <% weeks.each do |week| %>
+      <div class="card-calendar__week"><% week.each do |state, n| %><%= atom "calendar_day", state:, number: n %><% end %></div>
+    <% end %>
+  </div>
+  <p class="card-calendar__summary text-body-l"><%= summary %></p>
+</article>

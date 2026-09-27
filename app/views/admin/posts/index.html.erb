@@ -1,0 +1,19 @@
+<% content_for :title, "Материалы" %>
+<%= molecule "section_header", title: "Материалы", action_label: "Добавить", action_href: new_admin_post_path, level: 1 %>
+<table class="table">
+  <thead><tr><th>Заголовок</th><th>Категория · тип</th><th>Статус</th><th></th></tr></thead>
+  <tbody>
+    <% @posts.each do |p| %>
+      <tr>
+        <td><%= p.title %></td>
+        <td class="muted"><%= p.category.name %> · <%= p.kind_label %></td>
+        <td><%= p.published? ? "Опубликовано" : "Черновик" %></td>
+        <td>
+          <%= link_to "Открыть", post_path(p), class: "button button--plain" if p.published? %>
+          <%= link_to "Изменить", edit_admin_post_path(p), class: "button button--plain" %>
+          <%= button_to "Удалить", admin_post_path(p), method: :delete, class: "button button--plain", form_class: "inline-form", data: { turbo_confirm: "Удалить «#{p.title}»?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

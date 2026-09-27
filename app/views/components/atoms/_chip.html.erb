@@ -1,0 +1,5 @@
+<% label = local_assigns.fetch(:label) { "Сила" }; domain = local_assigns.fetch(:domain) { "strength" }; show_icon = true if local_assigns[:show_icon].nil?; selected = local_assigns.fetch(:selected) { false }; href = local_assigns.fetch(:href) { nil }; inset = local_assigns.fetch(:inset) { false }; icon_name = local_assigns.fetch(:icon_name) { nil } %>
+<% classes = ["chip", ("chip--selected" if selected), ("chip--inset" if inset), "text-body-m"].compact %>
+<%= content_tag(href ? :a : :span, href: href, class: classes, aria: { current: (selected && href ? "page" : nil) }) do %>
+  <%= (icon_name ? icon(icon_name, size: 16) : domain_icon(domain, size: 16)) if show_icon %><span><%= label %></span>
+<% end %>

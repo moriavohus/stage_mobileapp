@@ -1,0 +1,13 @@
+<% date = local_assigns.fetch(:date) { "Пятница, 25 сентября" }; title = local_assigns.fetch(:title) { "Сила утром" }; duration = local_assigns.fetch(:duration) { "12 мин" }
+   steps = local_assigns.fetch(:steps) { [{ title: "Приседания у стены", subtitle: "с весом", detail: "7 мин" }, { title: "Быстрая ходьба", subtitle: "на улице", detail: "20 мин" }, { title: "Быстрая ходьба", subtitle: "на улице", detail: "20 мин" }] } %>
+<section class="widget w-layer">
+  <div class="w-layer__header"><p class="w-layer__date text-body-l"><%= date %></p><p class="w-layer__label text-title-section">Слой дня</p></div>
+  <div class="w-layer__sheet">
+    <div class="w-layer__title-row">
+      <h3 class="w-layer__title text-title-section"><%= title %></h3>
+      <span class="widget-badge text-body-l"><%= icon "clock" %><%= duration %></span>
+    </div>
+    <div class="w-layer__steps"><% steps.each do |s| %><%= molecule "row_exercise", tone: "sky", domain: "strength", **s %><% end %></div>
+    <div class="w-layer__fade"></div>
+  </div>
+</section>

@@ -1,0 +1,10 @@
+<% type = local_assigns.fetch(:type) { "week" }; days = local_assigns.fetch(:days) { nil }; href = local_assigns.fetch(:href) { nil }
+   title = local_assigns.fetch(:title) { (type == "week" ? "Слоёв за неделю" : "Всего слоёв") }; value = local_assigns.fetch(:value) { (type == "week" ? "+12" : "184") } %>
+<article class="card-stat surface-lavender">
+  <%= molecule "stat_block", title:, value: %>
+  <% if type == "week" %>
+    <%= days ? molecule("week_layers", days:) : molecule("week_layers") %>
+  <% else %>
+    <%= atom "button", label: "Открыть", style: "plain", href: href, type: "button" %>
+  <% end %>
+</article>

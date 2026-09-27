@@ -1,0 +1,8 @@
+<% active = local_assigns.fetch(:active) { "today" }; items = local_assigns.fetch(:items) { [["today", "today", "Сегодня", "#"], ["library", "library", "Лента", "#"], ["profile", "profile", "Профиль", "#"]] } %>
+<nav class="tab-bar" aria-label="Основная навигация">
+  <div class="tab-bar__nav">
+    <% items.each do |key, icon_name, label, href| %>
+      <%= atom "tab_item", icon_name:, label:, href:, active: key == active %>
+    <% end %>
+  </div>
+</nav>

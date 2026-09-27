@@ -1,0 +1,18 @@
+<% content_for :title, "Категории" %>
+<%= molecule "section_header", title: "Категории", action_label: "Добавить", action_href: new_admin_category_path, level: 1 %>
+<table class="table">
+  <thead><tr><th>Название</th><th>Домен · тон</th><th>Материалов</th><th></th></tr></thead>
+  <tbody>
+    <% @categories.each do |c| %>
+      <tr>
+        <td><%= domain_icon(c.domain, size: 20) %> <%= c.name %></td>
+        <td class="muted"><%= c.domain %> · <%= c.tone %></td>
+        <td><%= c.posts_count %></td>
+        <td>
+          <%= link_to "Изменить", edit_admin_category_path(c), class: "button button--plain" %>
+          <%= button_to "Удалить", admin_category_path(c), method: :delete, class: "button button--plain", form_class: "inline-form", data: { turbo_confirm: "Удалить категорию «#{c.name}»?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

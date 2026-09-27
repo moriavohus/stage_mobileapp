@@ -1,0 +1,9 @@
+<% lines = local_assigns.fetch(:lines) { [[[:bright, "184"], [:dim, "слоя"]], [[:dim, "в"], [:bright, "жемчуге"]], [[:dim, "сила"], [:bright, "+4"]],
+              [[:icon, "domain-sleep"], [:bright, "сон"], [:dim, "в"]], [[:dim, "22:30"]]] } %>
+<section class="widget w-phrase surface-lavender">
+  <% lines.each do |line| %>
+    <p class="w-phrase__line text-title-phrase">
+      <% line.each do |kind, text| %><%= kind == :icon ? icon(text, size: 20) : tag.span(text, class: "w-phrase__#{kind}") %><% end %>
+    </p>
+  <% end %>
+</section>

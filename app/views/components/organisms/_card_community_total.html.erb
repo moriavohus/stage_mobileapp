@@ -1,0 +1,6 @@
+<% title = local_assigns.fetch(:title) { "Слоёв за месяц в круге «30+ и сила»" }; value = local_assigns.fetch(:value) { "1 240" }; action_label = local_assigns.fetch(:action_label) { "Добавить свой слой" }; href = local_assigns.fetch(:href) { nil } %>
+<article class="card-total surface-lavender">
+  <h3 class="text-title-section"><%= title %></h3>
+  <p class="text-display-xl"><%= value %></p>
+  <%= atom "button", label: action_label, style: "primary", block: true, href: href, type: "button" %>
+</article>

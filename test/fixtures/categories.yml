@@ -1,0 +1,12 @@
+sila:
+  name: Сила и движение
+  slug: sila
+  domain: strength
+  tone: sky
+  position: 1
+son:
+  name: Сон и восстановление
+  slug: son
+  domain: sleep
+  tone: lime
+  position: 2

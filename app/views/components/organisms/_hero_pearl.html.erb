@@ -1,0 +1,8 @@
+<% value = local_assigns.fetch(:value) { "184" }; caption = local_assigns.fetch(:caption) { "слоя перламутра" }; shape = local_assigns.fetch(:shape) { "Форма: сила и сон" } %>
+<section class="hero-pearl">
+  <div class="hero-pearl__wrap"><%= atom "pearl", size: "xl" %></div>
+  <div class="hero-pearl__count">
+    <div class="hero-pearl__value"><span class="text-display-xl"><%= value %></span><span class="hero-pearl__caption text-caption-m"><%= caption %></span></div>
+    <%= atom "chip", label: shape, show_icon: false %>
+  </div>
+</section>
